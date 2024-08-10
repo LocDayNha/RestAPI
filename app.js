@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 require("./model/category");
 require("./model/product");
 require("./model/user");
+require("./model/baove");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,6 +16,7 @@ var productRouter = require('./routes/product');
 var dssvRouter = require('./routes/dssv');
 var categoryRouter = require('./routes/category');
 var userRouter = require('./routes/user');
+var baoveRouter = require('./routes/baove');
 
 var app = express();
 
@@ -33,7 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //connect database
-mongoose.connect('mongodb+srv://locdaynha200:khEc9eauQkPon2o7@restapi.tq7xvlm.mongodb.net/RestAPI')
+mongoose.connect('mongodb://localhost:27017/RestAPI')
   .then(() => console.log('>>>>>>>>>> DB Connected!!!!!!'))
   .catch(err => console.log('>>>>>>>>> DB Error: ', err));
 
@@ -43,6 +45,7 @@ app.use('/product', productRouter);
 app.use('/category', categoryRouter);
 app.use('/dssv', dssvRouter);
 app.use('/user', userRouter);
+app.use('/baove', baoveRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
